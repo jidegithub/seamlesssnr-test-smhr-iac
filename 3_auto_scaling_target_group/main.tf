@@ -39,6 +39,7 @@ module "web-server" {
   user_data       = filebase64("./templates/userdata.tpl")
   keypair_name    = aws_key_pair.scandy.key_name
   resource_name   = trimsuffix(substr("${local.prefix}-web-server", 0, 32), "-")
+  target_group_arn = [aws_lb_target_group.web.arn]
 
   #autoscaling
   min_instance     = 2

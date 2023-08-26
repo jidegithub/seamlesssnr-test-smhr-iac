@@ -45,10 +45,10 @@ variable "public_subnets" {
   description = "public subnets"
 }
 
-# variable "target_group_arns" {
-#   type = list(string)
-#   description = "target group application resource network"
-# }
+variable "target_group_arns" {
+  type = list(string)
+  description = "target group application resource network"
+}
 variable "user_data" {}
 variable "resource_name" {}
 variable "common_tags" {}
