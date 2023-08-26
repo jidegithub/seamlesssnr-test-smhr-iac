@@ -107,10 +107,6 @@ module "private_instance_sg" {
 
   computed_ingress_with_source_security_group_id = [
     {
-      rule                     = "ssh-tcp"
-      source_security_group_id = local.public_instance_security_group_id
-    },
-    {
       rule                     = "http-80-tcp"
       source_security_group_id = local.alb_security_group_id
     },
@@ -119,11 +115,18 @@ module "private_instance_sg" {
       source_security_group_id = local.alb_security_group_id
     }
   ]
-  number_of_computed_ingress_with_source_security_group_id = 3
+  number_of_computed_ingress_with_source_security_group_id = 2
   computed_ingress_with_self = [{
     rule = "all-icmp"
   }]
   number_of_computed_ingress_with_self = 1
+  computed_ingress_with_cidr_blocks = [
+    {
+      rule        = "ssh-tcp"
+      cidr_blocks = "185.195.77.134/32"
+    }
+  ]
+  number_of_computed_ingress_with_cidr_blocks = 1
 }
 
 resource "aws_key_pair" "scandy" {
