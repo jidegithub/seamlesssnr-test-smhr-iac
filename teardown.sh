@@ -13,8 +13,8 @@ green='\033[32;40m'
 #       echo
 #   fi
 # done
-cd 5_blue_green_deployment && terraform destroy -auto-approve -lock=false && cd .. &&
-cd 4_instance_auto_scaling_group && terraform destroy -auto-approve -lock=false && cd .. &&
+
+cd 4_auto_scaling_target_group && terraform destroy -auto-approve -lock=false && cd .. &&
 cd 3_alb_target_group && terraform destroy -auto-approve -lock=false && cd .. &&
 cd 2_alb && terraform destroy -auto-approve -lock=false && cd .. &&
 cd 1_infrastructure && terraform destroy -auto-approve -lock=false && cd .. &&

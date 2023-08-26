@@ -1,9 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
 
-# Shared public AWS Application Load Balancer (ALB)
+# Shared public AWS Load Balancer (LB)
 This module sets up the following AWS services:
 
-* Shared public AWS Application Load Balancer (ALB)
+* Shared public AWS Load Balancer (LB)
 * Empty ALB Security Group
 ## Deployment
 

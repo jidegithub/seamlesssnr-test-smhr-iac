@@ -48,41 +48,6 @@ resource "aws_lb_target_group_attachment" "web" {
   port             = 80
 }
 
-
-
-
-
-# # create a listener on port 443 with forward action
-# resource "aws_lb_listener" "alb_https_listener" {
-#   load_balancer_arn = local.alb_arn
-#   port              = 443
-#   protocol          = "HTTPS"
-#   ssl_policy        = "ELBSecurityPolicy-2016-08"
-#   certificate_arn   = aws_iam_server_certificate.seamless_cert.arn
-
-#   default_action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.magento.arn
-#   }
-#   depends_on = [aws_iam_server_certificate.seamless_cert]
-# }
-
-# resource "aws_lb_listener_rule" "varnish-443" {
-#   listener_arn = aws_lb_listener.alb_https_listener.arn
-#   priority     = 100
-
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.varnish.arn
-#   }
-
-#   condition {
-#     path_pattern {
-#       values = ["/media/*", "/static/*"]
-#     }
-#   }
-# }
-
 resource "aws_iam_server_certificate" "seamless_cert" {
   name             = "seamless"
   certificate_body = file("~/self-signed-ca-pub.pem")
@@ -92,9 +57,3 @@ resource "aws_iam_server_certificate" "seamless_cert" {
     create_before_destroy = true
   }
 }
-
-# resource "aws_lb_listener_certificate" "https_listener_cert" {
-#   listener_arn    = aws_lb_listener.alb_https_listener.arn
-#   certificate_arn = aws_iam_server_certificate.seamless_cert.arn
-#   depends_on      = [aws_iam_server_certificate.seamless_cert]
-# }

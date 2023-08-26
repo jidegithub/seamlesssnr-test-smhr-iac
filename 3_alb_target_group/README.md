@@ -1,15 +1,11 @@
 <!-- BEGIN_TF_DOCS -->
 
-# AWS Application Load Balancer (ALB) - IP-based Target Group
+# AWS Load Balancer (LB) - IP-based Target Group
 This module sets up the following AWS services:
 
-* ALB Listener
-* ALB Target Group
-* ALB Security Group rule
-* EC2 Security Group
-* EC2 Instances with Magento
-* EC2 Instances with Varnish
-* IAM Server Certificate
+* LB Listener
+* LB Target Group
+* INSTANCE Security Group
 
 ```sh
 terraform init
