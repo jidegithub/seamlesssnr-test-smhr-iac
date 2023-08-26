@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 green='\033[32;40m'
 reset='\033[0m'
 

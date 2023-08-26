@@ -35,7 +35,7 @@ resource "aws_autoscaling_group" "server" {
   launch_configuration = aws_launch_configuration.server.name
   # availability_zones   = data.aws_availability_zones.all.names
   name_prefix = "${var.resource_name}-asg"
-  target_group_arns    = var.target_group_arn
+  target_group_arns    = var.target_group_arns
 
   min_size         = var.min_instance
   desired_capacity = var.desired_capacity

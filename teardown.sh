@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 green='\033[32;40m'
 #figure out how to loop backwards
 # for file in $(pwd)/*

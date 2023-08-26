@@ -1,6 +1,7 @@
 locals {
-  alb_arn                   = data.terraform_remote_state.alb.outputs.alb_arn
-  alb_sg                    = data.terraform_remote_state.alb.outputs.alb_security_group_id
+  alb_arn       = data.terraform_remote_state.alb.outputs.alb_arn
+  alb_sg        = data.terraform_remote_state.alb.outputs.alb_security_group_id
+  resource_name = trimsuffix(substr("${local.prefix}-logs", 0, 32), "-")
 }
 
 # ------- ALB Security Group Rule --------

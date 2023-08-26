@@ -32,14 +32,14 @@ data "terraform_remote_state" "alb" {
 }
 
 module "web-server" {
-  source          = "./instance"
-  ec2_ami         = "ami-0ee23bfc74a881de5"
-  security_groups = [module.private_instance_sg.security_group_id]
-  instance_type   = "t2.micro"
-  user_data       = filebase64("./templates/userdata.tpl")
-  keypair_name    = aws_key_pair.scandy.key_name
-  resource_name   = trimsuffix(substr("${local.prefix}-web-server", 0, 32), "-")
-  target_group_arn = [aws_lb_target_group.web.arn]
+  source            = "./instance"
+  ec2_ami           = "ami-0ee23bfc74a881de5"
+  security_groups   = [module.private_instance_sg.security_group_id]
+  instance_type     = "t2.micro"
+  user_data         = filebase64("./templates/userdata.tpl")
+  keypair_name      = aws_key_pair.scandy.key_name
+  resource_name     = trimsuffix(substr("${local.prefix}-web-server", 0, 32), "-")
+  target_group_arns = [aws_lb_target_group.web.arn]
 
   #autoscaling
   min_instance     = 2
@@ -113,9 +113,13 @@ module "private_instance_sg" {
     {
       rule                     = "http-80-tcp"
       source_security_group_id = local.alb_security_group_id
+    },
+    {
+      rule                     = "https-443-tcp"
+      source_security_group_id = local.alb_security_group_id
     }
   ]
-  number_of_computed_ingress_with_source_security_group_id = 2
+  number_of_computed_ingress_with_source_security_group_id = 3
   computed_ingress_with_self = [{
     rule = "all-icmp"
   }]
